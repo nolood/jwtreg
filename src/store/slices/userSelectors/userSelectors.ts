@@ -1,3 +1,3 @@
-import { IUserState}  from "../../../types/IUserState.ts";
+import { IUserState } from "../../../types/IUserState.ts";
 
-export const selectId = (state: { user: IUserState }) => state.user.isAuth;
+export const selectIsAuth = (state: { user: IUserState }) => state.user.isAuth;
