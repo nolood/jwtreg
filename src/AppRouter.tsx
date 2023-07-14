@@ -9,6 +9,7 @@ import { checkIsAuth } from "./store/slices/userAsync/userAsync";
 const AppRouter = () => {
   const isAuth = useAppSelector(selectIsAuth);
   const dispatch = useAppDispatch();
+  console.log(isAuth);
   useEffect(() => {
     dispatch(checkIsAuth());
   }, []);

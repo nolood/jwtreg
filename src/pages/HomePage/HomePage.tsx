@@ -1,10 +1,15 @@
 import { Button, Form, Input } from "antd";
 import { IForm } from "../../types/IForm";
-import { useAppDispatch } from "../../hooks/useReduxHooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/useReduxHooks";
 import { loginUser } from "../../store/slices/userAsync/userAsync";
+import { useEffect } from "react";
+import { selectIsAuth } from "../../store/slices/userSelectors/userSelectors";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
+  const isAuth = useAppSelector(selectIsAuth);
+  const navigate = useNavigate();
   const onSubmit = (values: IForm) => {
     dispatch(loginUser(values));
   };
@@ -12,6 +17,12 @@ const HomePage = () => {
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/private");
+    }
+  }, [isAuth]);
 
   return (
     <div>
